@@ -26,7 +26,7 @@ export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: Fin
 
       {/* Action buttons */}
       <div className="flex flex-wrap gap-4 items-center justify-center mt-4">
-        {/* Register for μDawn ’26 */}
+        {/* Register for μDawn '26 */}
         <motion.button
           onClick={onRegisterClick}
           className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[40px] bg-white text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-bold tracking-[0.08em] uppercase transition-colors duration-300 rounded-sm"
@@ -36,7 +36,10 @@ export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: Fin
           }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
         >
-          <span className="relative z-10">Register for μDawn ’26</span>
+          <span className="relative z-10 flex items-center gap-2">
+            <span>Register for</span>
+            <span className="normal-case">μDAWN '26</span>
+          </span>
         </motion.button>
 
         {/* Explore the Journey */}

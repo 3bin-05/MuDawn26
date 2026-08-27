@@ -105,7 +105,7 @@ export default function CampusShowcase() {
         >
           <span className="absolute inset-0 w-full h-full bg-white transition-transform duration-500 ease-[0.22,1,0.36,1] -translate-x-full group-hover:translate-x-0 z-0" />
           <span className="relative z-10 flex items-center gap-2">
-            <span>Explore µLearn SBC</span>
+            <span>Explore </span><span className="normal-case">μLEARN SBC</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:translate-x-1 text-current">
               <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

@@ -228,7 +228,7 @@ export default function Hero({ onCtaClick, onRegisterClick }: HeroProps) {
             {/* Secondary Action Button */}
             <motion.button
               onClick={onCtaClick}
-              className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[44px] border border-white/30 bg-transparent text-white hover:text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-medium tracking-[0.08em] uppercase transition-colors duration-300"
+              className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[44px] border border-white/30 bg-transparent text-white hover:text-black font-sans text-[13px] sm:text-[15px] lg:text-[16px] font-semibold tracking-[0.08em] uppercase transition-colors duration-300"
               whileHover={{
                 y: -2,
                 borderColor: '#ffffff',
@@ -240,7 +240,8 @@ export default function Hero({ onCtaClick, onRegisterClick }: HeroProps) {
               
               {/* Content layer */}
               <span className="relative z-10 flex items-center gap-2">
-                <span>Explore μDawn</span>
+                <span>Explore</span>
+                <span className="normal-case">μDAWN</span>
                 <svg
                   width="16"
                   height="16"
