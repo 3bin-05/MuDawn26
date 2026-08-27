@@ -1,10 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { timelinePhases } from '../config/eventConfig';
 import { CheckCircle2, Circle } from 'lucide-react';
 
 export default function HackathonTimeline() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Scroll-driven: mark a phase active when its card reaches 50% of viewport height
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    cardRefs.current.forEach((el, idx) => {
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveIdx(idx);
+          }
+        },
+        {
+          // rootMargin shifts the trigger line: fires when the card top crosses
+          // 50% from the top of the viewport (i.e. halfway down the screen)
+          rootMargin: '-50% 0px -50% 0px',
+          threshold: 0,
+        }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
 
   return (
     <div id="timeline" className="w-full min-h-[85vh] flex flex-col justify-center gap-10 sm:gap-14 pt-24 pb-12">
@@ -29,7 +58,7 @@ export default function HackathonTimeline() {
           <motion.div
             className="absolute top-0 w-full bg-white shadow-[0_0_10px_#ffffff]"
             initial={{ height: 0 }}
-            animate={{ height: `${(activeIdx / 5) * 100}%` }}
+            animate={{ height: `${(activeIdx / (timelinePhases.length - 1)) * 100}%` }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
           />
         </div>
@@ -43,6 +72,7 @@ export default function HackathonTimeline() {
             return (
               <div
                 key={phase.phase}
+                ref={(el) => { cardRefs.current[idx] = el; }}
                 className="relative flex flex-col sm:flex-row items-start group min-w-0 cursor-pointer select-none"
                 onClick={() => setActiveIdx(idx)}
                 onMouseEnter={() => setActiveIdx(idx)}
@@ -77,9 +107,9 @@ export default function HackathonTimeline() {
                     {isCompleted ? (
                       <CheckCircle2 className="w-3.5 h-3.5 text-white/60" />
                     ) : isActive ? (
-                      <motion.div 
+                      <motion.div
                         layoutId="activeTimelineIndicator"
-                        className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_8px_#ffffff]" 
+                        className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_8px_#ffffff]"
                       />
                     ) : (
                       <Circle className="w-2 h-2 text-white/20" />

@@ -90,6 +90,8 @@ export default function App() {
           src={bgImg2}
           alt=""
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-top"
         />
         {/* Dark veil so text above stays readable */}

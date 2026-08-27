@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoImg from '../assets/SBC-logo.svg';
 
@@ -10,37 +10,30 @@ interface NavbarProps {
 
 export default function Navbar({ activeSection, setActiveSection, onRegisterClick }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Darken navbar slightly after scrolling 60px
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navItems = [
-    { label: 'HOME', value: 'hero' },
-    { label: 'ABOUT', value: 'about' },
-    { label: 'CAMPUS', value: 'chapter' },
-    { label: 'TIMELINE', value: 'timeline' },
-    { label: 'EXPERIENCES', value: 'experiences' },
-    { label: 'SPONSORS', value: 'sponsors' },
+    { label: 'Home', value: 'hero' },
+    { label: 'About', value: 'about' },
+    { label: 'Campus', value: 'chapter' },
+    { label: 'Timeline', value: 'timeline' },
+    { label: 'Experiences', value: 'experiences' },
+    { label: 'Sponsors', value: 'sponsors' },
   ] as const;
 
   const containerVariants = {
-    hidden: { opacity: 0, y: -30 },
+    hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as const,
-      },
-    },
-  };
-
-  const dividerVariants = {
-    hidden: { scaleX: 0 },
-    visible: {
-      scaleX: 1,
-      transition: {
-        duration: 1.2,
-        ease: [0.16, 1, 0.3, 1] as const,
-        delay: 0.3,
-      },
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
     },
   };
 
@@ -49,122 +42,141 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
     setActiveSection(value, true);
   };
 
-  const isItemActive = (value: string) => {
-    return activeSection === value;
-  };
+  const isItemActive = (value: string) => activeSection === value;
 
   return (
     <motion.header
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="fixed top-0 left-0 w-full z-50 bg-black/85 backdrop-blur-md border-b border-white/10 transition-all duration-300 animate-fade-in"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-black/70 backdrop-blur-xl border-b border-white/8'
+          : 'bg-gradient-to-b from-black/60 to-transparent backdrop-blur-sm border-b border-white/5'
+      }`}
     >
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-10 lg:px-14 pt-5 pb-4 flex justify-between items-center">
-        {/* Left: Logo and Branding */}
-        <a href="#" className="flex items-center gap-3 sm:gap-4 group">
+      {/* Glass sheen line at very top */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-10 lg:px-14 py-4 flex justify-between items-center">
+
+        {/* Left: Logo + Brand */}
+        <a href="#" onClick={(e) => handleNavClick(e as React.MouseEvent, 'hero')} className="flex items-center gap-3 group">
           <img
             src={logoImg}
             alt="MuLearn SBC Logo"
-            className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-102"
+            className="h-8 sm:h-9 w-auto object-contain transition-all duration-300 group-hover:opacity-80"
           />
-          <span className="font-orbitron font-bold text-white text-[12px] sm:text-[14px] md:text-[15px] tracking-[0.1em] select-none flex items-center gap-1.5 sm:gap-2">
-            
-            <span className="text-white/30 font-light">|</span>
-            <span className="text-white/90">μDawn ’26</span>
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-white/20 font-light text-sm select-none">|</span>
+            <span className="font-orbitron font-bold text-white/90 text-[12px] sm:text-[13px] tracking-[0.12em] select-none group-hover:text-white transition-colors duration-300">
+              μDawn '26
+            </span>
+          </div>
         </a>
 
-        {/* Right: Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-10">
-          <nav className="flex items-center gap-4 lg:gap-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.value}
-                onClick={(e) => handleNavClick(e, item.value)}
-                className={`text-[11px] lg:text-[13px] xl:text-[14px] font-orbitron font-medium tracking-nav transition-all relative flex flex-col items-center py-1 ${
-                  isItemActive(item.value) ? 'text-white' : 'text-white/45 hover:text-white/80'
-                }`}
-              >
-                <span>{item.label}</span>
-                {isItemActive(item.value) && (
+        {/* Center/Right: Desktop nav */}
+        <div className="hidden md:flex items-center gap-5 lg:gap-8">
+          <nav className="flex items-center gap-1">
+            {navItems.map((item) => {
+              const active = isItemActive(item.value);
+              return (
+                <motion.button
+                  key={item.value}
+                  onClick={(e) => handleNavClick(e, item.value)}
+                  className="relative px-3 py-1.5 text-[11px] lg:text-[12px] font-orbitron font-medium tracking-[0.12em] uppercase transition-all duration-200 rounded-sm"
+                  style={{ color: active ? '#ffffff' : 'rgba(255,255,255,0.45)' }}
+                  whileHover={{ color: '#ffffff' }}
+                >
+                  {/* Active pill highlight */}
+                  {active && (
+                    <motion.span
+                      layoutId="navPill"
+                      className="absolute inset-0 rounded-sm bg-white/10 border border-white/15"
+                      transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+
+                  {/* Underline slide-in on hover */}
                   <motion.span
-                    layoutId="activeNavIndicator"
-                    className="absolute bottom-0 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_10px_#ffffff]"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    className="absolute bottom-0 left-3 right-3 h-[1px] bg-white/40 origin-left"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.2 }}
                   />
-                )}
-              </motion.button>
-            ))}
+                </motion.button>
+              );
+            })}
           </nav>
 
-          {/* Prominent CTA Button */}
-          <button
+          {/* Register CTA */}
+          <motion.button
             onClick={onRegisterClick}
-            className="px-4 py-2 border border-white/40 hover:border-white text-white hover:text-black bg-transparent hover:bg-white text-[11px] font-orbitron font-semibold tracking-wider rounded-sm transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] uppercase"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="relative overflow-hidden group px-4 py-2 text-[11px] font-orbitron font-semibold tracking-wider uppercase text-white border border-white/30 rounded-sm transition-all duration-300 hover:border-white/70"
           >
-            Register Now
-          </button>
+            {/* Fill sweep on hover */}
+            <span className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[0.22,1,0.36,1]" />
+            <span className="relative z-10 group-hover:text-black transition-colors duration-300">
+              Register Now
+            </span>
+          </motion.button>
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile hamburger */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 bg-transparent border-none cursor-pointer z-50"
+          className="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 z-50"
           aria-label="Toggle Menu"
           id="mobile-menu-toggle"
         >
           <motion.span
             animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            className="block w-6 h-[2px] bg-white"
+            className="block w-6 h-[1.5px] bg-white"
             transition={{ duration: 0.3 }}
           />
           <motion.span
             animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block w-6 h-[2px] bg-white"
+            className="block w-6 h-[1.5px] bg-white"
             transition={{ duration: 0.2 }}
           />
           <motion.span
             animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            className="block w-6 h-[2px] bg-white"
+            className="block w-6 h-[1.5px] bg-white"
             transition={{ duration: 0.3 }}
           />
         </button>
       </div>
 
-      {/* Thin Divider Under Navbar */}
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-10 lg:px-14">
-        <motion.div
-          variants={dividerVariants}
-          className="h-[1px] w-full bg-white/18 origin-left"
-          style={{ backgroundColor: 'rgba(255,255,255,0.18)' }}
-        />
-      </div>
-
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Full-screen Drawer */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: '-100%' }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '-100%' }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-            className="fixed inset-0 w-screen h-screen bg-black/95 backdrop-blur-2xl z-40 flex flex-col items-center justify-center"
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] as const }}
+            className="fixed inset-0 w-screen h-screen bg-black/90 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-2"
           >
-            <nav className="flex flex-col items-center gap-6">
+            {/* Sheen top line */}
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+            <nav className="flex flex-col items-center gap-5">
               {navItems.map((item, idx) => (
                 <motion.button
                   key={item.value}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: idx * 0.08 }}
+                  exit={{ opacity: 0, y: 16 }}
+                  transition={{ delay: idx * 0.07 }}
                   onClick={(e) => {
                     handleNavClick(e, item.value);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`text-xl font-orbitron font-semibold tracking-nav uppercase transition-colors ${
-                    isItemActive(item.value) ? 'text-white' : 'text-white/40 hover:text-white/80'
+                  className={`text-2xl font-orbitron font-semibold tracking-[0.15em] uppercase transition-colors duration-200 ${
+                    isItemActive(item.value) ? 'text-white' : 'text-white/35 hover:text-white/75'
                   }`}
                 >
                   {item.label}
@@ -172,15 +184,12 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
               ))}
 
               <motion.button
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ delay: navItems.length * 0.08 }}
-                onClick={() => {
-                  onRegisterClick();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="mt-4 px-6 py-3 border border-white/40 text-white text-[13px] font-orbitron font-semibold tracking-wider rounded-sm transition-all duration-300 uppercase w-48 text-center"
+                exit={{ opacity: 0, y: 16 }}
+                transition={{ delay: navItems.length * 0.07 }}
+                onClick={() => { onRegisterClick(); setIsMobileMenuOpen(false); }}
+                className="mt-6 px-8 py-3 border border-white/30 text-white text-[13px] font-orbitron font-semibold tracking-wider rounded-sm hover:bg-white hover:text-black transition-all duration-300 uppercase"
               >
                 Register Now
               </motion.button>
