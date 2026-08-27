@@ -16,7 +16,7 @@ export default function Experiences() {
   };
 
   return (
-    <div id="experiences" className="w-full flex flex-col gap-10 sm:gap-14 pt-16 border-t border-white/5">
+    <div id="experiences" className="w-full min-h-[80vh] flex flex-col justify-center gap-10 sm:gap-14 pt-24 pb-12 border-t border-white/5">
       {/* Top Header block */}
       <div className="flex flex-col gap-2">
         <span className="font-orbitron font-semibold text-[11px] tracking-[0.3em] text-white/50 uppercase">

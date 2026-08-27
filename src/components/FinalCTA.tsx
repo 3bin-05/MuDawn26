@@ -7,7 +7,7 @@ interface FinalCTAProps {
 
 export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: FinalCTAProps) {
   return (
-    <div id="final-cta" className="w-full flex flex-col gap-8 sm:gap-10 pt-16 pb-12 border-t border-white/5 items-center justify-center text-center max-w-4xl mx-auto">
+    <div id="final-cta" className="w-full min-h-[75vh] flex flex-col gap-8 sm:gap-10 pt-24 pb-12 border-t border-white/5 items-center justify-center text-center max-w-4xl mx-auto">
       {/* Small top node label */}
       <span className="font-orbitron font-semibold text-[11px] tracking-[0.3em] text-white/50 uppercase">
         READY TO BUILD?

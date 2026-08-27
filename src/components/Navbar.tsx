@@ -58,7 +58,7 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="absolute top-0 left-0 w-full z-50 bg-transparent animate-fade-in"
+      className="fixed top-0 left-0 w-full z-50 bg-black/85 backdrop-blur-md border-b border-white/10 transition-all duration-300 animate-fade-in"
     >
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-10 lg:px-14 pt-5 pb-4 flex justify-between items-center">
         {/* Left: Logo and Branding */}
@@ -69,7 +69,7 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
             className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-102"
           />
           <span className="font-orbitron font-bold text-white text-[12px] sm:text-[14px] md:text-[15px] tracking-[0.1em] select-none flex items-center gap-1.5 sm:gap-2">
-            <span>μLearn SBC</span>
+            
             <span className="text-white/30 font-light">|</span>
             <span className="text-white/90">μDawn ’26</span>
           </span>

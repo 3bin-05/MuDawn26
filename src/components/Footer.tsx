@@ -92,7 +92,7 @@ export default function Footer({ onNavClick }: FooterProps) {
               HACKATHON PORTAL
             </span>
             <h2 className="font-orbitron text-[24px] sm:text-[34px] leading-none font-bold tracking-wide mt-2">
-              μLearn SBC | μDawn ’26
+              µDawn ’26
             </h2>
             <p className="font-sans text-[13px] sm:text-[14px] leading-relaxed text-white/55 mt-3 max-w-md">
               Connect with the community, follow updates, and reach the team for collaborations, sponsors, and hackathon registration inquiries.

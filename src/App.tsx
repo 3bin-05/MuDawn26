@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutAndCampus from './components/AboutAndCampus';
@@ -8,133 +9,58 @@ import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import { eventInfo } from './config/eventConfig';
 import type { ActiveSection } from './types/activeSection';
+import bgImg2 from './assets/mubg2.webp';
 
 export default function App() {
-  const transitionDurationMs = 1200;
   const [activeSection, setActiveSection] = useState<ActiveSection>('hero');
-  const [activePlate, setActivePlate] = useState<'hero' | 'about' | 'journey'>('hero');
-  const [entranceY, setEntranceY] = useState<string | number>('120%');
-  const [exitY, setExitY] = useState<string | number>('120%');
   const [isLoading, setIsLoading] = useState(true);
 
-  const touchStartY = useRef(0);
-  const isTransitionLocked = useRef(false);
-  const unlockTimer = useRef<number | null>(null);
-
-  const shouldShowJourneyLayer =
-    activePlate === 'journey' ||
-    (activePlate === 'about' && entranceY === '-100%');
-
+  // IntersectionObserver to update activeSection when scrolling through document
   useEffect(() => {
-    return () => {
-      if (unlockTimer.current) {
-        window.clearTimeout(unlockTimer.current);
+    if (isLoading) return;
+
+    const sectionIds: { id: string; section: ActiveSection }[] = [
+      { id: 'hero', section: 'hero' },
+      { id: 'about', section: 'about' },
+      { id: 'chapter', section: 'chapter' },
+      { id: 'timeline', section: 'timeline' },
+      { id: 'experiences', section: 'experiences' },
+      { id: 'sponsors', section: 'sponsors' },
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const found = sectionIds.find((s) => s.id === entry.target.id);
+            if (found) {
+              setActiveSection(found.section);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-10% 0px -40% 0px',
       }
-    };
-  }, []);
+    );
 
-  const lockTransition = () => {
-    isTransitionLocked.current = true;
-    if (unlockTimer.current) {
-      window.clearTimeout(unlockTimer.current);
-    }
-    unlockTimer.current = window.setTimeout(() => {
-      isTransitionLocked.current = false;
-      unlockTimer.current = null;
-    }, transitionDurationMs);
-  };
-
-  const handlePlateChange = (targetPlate: 'hero' | 'about' | 'journey', force = false) => {
-    if (targetPlate === activePlate) return;
-
-    if (!force && isTransitionLocked.current) return;
-    lockTransition();
-
-    if (activePlate === 'hero' && targetPlate === 'about') {
-      setEntranceY('120%');
-      setExitY('120%');
-      setActivePlate('about');
-      setActiveSection('about');
-    } else if (activePlate === 'about' && targetPlate === 'journey') {
-      setExitY('-100%');
-      setActivePlate('journey');
-      setActiveSection('timeline');
-    } else if (activePlate === 'journey' && targetPlate === 'about') {
-      setEntranceY('-100%');
-      setExitY('-100%');
-      setActivePlate('about');
-      setActiveSection('chapter');
-    } else if (activePlate === 'about' && targetPlate === 'hero') {
-      setExitY('120%');
-      setActivePlate('hero');
-      setActiveSection('hero');
-    } else {
-      // Direct navbar jump or other edge cases
-      if (targetPlate === 'journey') {
-        setExitY('-100%');
-        setActivePlate('journey');
-      } else if (targetPlate === 'about') {
-        setEntranceY('120%');
-        setExitY('120%');
-        setActivePlate('about');
-      } else if (targetPlate === 'hero') {
-        setActivePlate('hero');
-        setActiveSection('hero');
-      }
-    }
-  };
-
-  const handleNavSelection = (section: ActiveSection, force = false) => {
-    if (section === activeSection) return;
-
-    if (section === 'hero') {
-      handlePlateChange('hero', force);
-      return;
-    }
-
-    let targetPlate: 'hero' | 'about' | 'journey' = 'hero';
-    if (section === 'about' || section === 'chapter') {
-      targetPlate = 'about';
-    } else if (section === 'timeline' || section === 'experiences' || section === 'sponsors') {
-      targetPlate = 'journey';
-    }
-
-    if (targetPlate !== activePlate) {
-      handlePlateChange(targetPlate, true);
-    }
-
-    setActiveSection(section);
-
-    const elementId = section === 'chapter' ? 'chapter' : section;
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        const el = document.getElementById(elementId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 350); // Allow time for plate transition slide to activate
+    sectionIds.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
-  };
 
-  const handleWheel = (e: React.WheelEvent) => {
-    if (activePlate === 'hero' && e.deltaY > 20) {
-      e.preventDefault();
-      handleNavSelection('about');
-    }
-  };
+    return () => {
+      observer.disconnect();
+    };
+  }, [isLoading]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (activePlate === 'hero') {
-      const touchY = e.touches[0].clientY;
-      const diff = touchStartY.current - touchY; // positive = swipe up
-      if (diff > 80) {
-        e.preventDefault();
-        handleNavSelection('about');
-      }
+  const handleNavSelection = (section: ActiveSection) => {
+    setActiveSection(section);
+    const elementId = section === 'chapter' ? 'chapter' : section;
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -147,53 +73,63 @@ export default function App() {
   };
 
   return (
-    <main
-      onWheel={handleWheel}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      className="min-h-screen bg-black text-white relative w-full overflow-hidden select-none font-sans antialiased"
-    >
+    <main className="min-h-screen bg-black text-white relative w-full overflow-x-hidden font-sans antialiased">
       <AnimatePresence>
         {isLoading && (
           <Preloader onComplete={() => setIsLoading(false)} />
         )}
       </AnimatePresence>
 
+      {/* ── Fixed space planet background ─────────────────────────────────────
+           Sits at z-[1]. Hero & About cover it with solid bg-[#060606] (z-[2]).
+           Journey section is transparent so this shows through beneath it.
+           Footer also covers it at z-[2]. The image stays completely still;
+           only the page content scrolls over it. ──────────────────────────── */}
+      <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden">
+        <img
+          src={bgImg2}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover object-top"
+        />
+        {/* Dark veil so text above stays readable */}
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
       <CustomCursor />
-      
+
       <Navbar
         activeSection={activeSection}
         setActiveSection={handleNavSelection}
         onRegisterClick={handleRegisterClick}
       />
 
-      <Hero 
-        activeSection={activeSection} 
-        onCtaClick={() => handleNavSelection('about')} 
-        onRegisterClick={handleRegisterClick}
-      />
-      
-      <AnimatePresence>
-        {shouldShowJourneyLayer && (
-          <HackathonJourney 
-            onGoToAbout={(force?: boolean) => handlePlateChange('about', force)}
-            setActiveNavSection={setActiveSection}
-            onRegisterClick={handleRegisterClick}
-          />
-        )}
-      </AnimatePresence>
+      {/* z-[2] + solid bg — sits above the fixed space bg while visible */}
+      <div className="relative z-[2] bg-[#060606]">
+        <Hero
+          onCtaClick={() => handleNavSelection('about')}
+          onRegisterClick={handleRegisterClick}
+        />
+        <AboutAndCampus />
 
-      <AnimatePresence>
-        {activePlate === 'about' && (
-          <AboutAndCampus 
-            onClose={(force?: boolean) => handlePlateChange('hero', force)} 
-            onGoToJourney={(force?: boolean) => handlePlateChange('journey', force)}
-            setActiveNavSection={setActiveSection}
-            entranceY={entranceY}
-            exitY={exitY}
-          />
-        )}
-      </AnimatePresence>
+        {/* ── Transition fade from About into Journey ──────────────────────────
+             This gradient is OUTSIDE the opacity-animated Journey section so it
+             is always at full opacity — no "missing fade frame" bug. It sits at
+             z-[3] and bleeds downward, softening the hard edge between the solid
+             #060606 background and the fixed space planet behind the Journey.  */}
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 right-0 h-56 translate-y-full bg-gradient-to-b from-[#060606] via-[#060606]/55 to-transparent pointer-events-none z-[3]"
+        />
+      </div>
+
+      {/* z-[1] — no background; fixed space bg shows through here */}
+      <div className="relative z-[1]">
+        <HackathonJourney
+          onRegisterClick={handleRegisterClick}
+        />
+      </div>
+
     </main>
   );
 }

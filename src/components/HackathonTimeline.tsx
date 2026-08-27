@@ -7,7 +7,7 @@ export default function HackathonTimeline() {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <div id="timeline" className="w-full flex flex-col gap-10 sm:gap-14 pt-16">
+    <div id="timeline" className="w-full min-h-[85vh] flex flex-col justify-center gap-10 sm:gap-14 pt-24 pb-12">
       {/* Top Header block */}
       <div className="flex flex-col gap-2">
         <span className="font-orbitron font-semibold text-[11px] tracking-[0.3em] text-white/50 uppercase">

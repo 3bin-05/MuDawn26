@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function CampusChapter() {
   return (
-    <div id="chapter" className="w-full flex flex-col gap-8 sm:gap-10 pt-16 border-t border-white/5">
+    <div id="chapter" className="w-full min-h-[85vh] flex flex-col justify-center gap-8 sm:gap-10 pt-24 pb-12 border-t border-white/5">
       {/* Top Header block */}
       <div className="flex flex-col gap-2">
         <span className="font-orbitron font-semibold text-[11px] tracking-[0.3em] text-white/50 uppercase">

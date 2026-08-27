@@ -4,14 +4,11 @@ import bgImg from '../assets/mubg.webp';
 import Counter from './Counter';
 
 interface HeroProps {
-  activeSection: 'hero' | 'about' | 'chapter' | 'timeline' | 'experiences' | 'sponsors';
   onCtaClick: () => void;
   onRegisterClick: () => void;
 }
 
-export default function Hero({ activeSection, onCtaClick, onRegisterClick }: HeroProps) {
-  const isInactive = activeSection !== 'hero';
-
+export default function Hero({ onCtaClick, onRegisterClick }: HeroProps) {
   // Parallax background variables
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -109,15 +106,13 @@ export default function Hero({ activeSection, onCtaClick, onRegisterClick }: Her
   };
 
   return (
-    <motion.div
-      animate={{
-        scale: isInactive ? 0.96 : 1,
-        opacity: isInactive ? 0.15 : 1,
-      }}
-      transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative w-full h-screen min-h-[100dvh] overflow-hidden bg-black select-none ${
-        isInactive ? 'pointer-events-none' : 'pointer-events-auto'
-      } will-change-transform`}
+    <motion.section
+      id="hero"
+      initial={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ amount: 0.2, once: false }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full h-screen min-h-[100dvh] overflow-hidden bg-black select-none pointer-events-auto"
     >
       {/* Background Image with subtle Parallax */}
       <motion.div
@@ -152,8 +147,6 @@ export default function Hero({ activeSection, onCtaClick, onRegisterClick }: Her
             className="flex flex-col gap-1 font-orbitron text-[9px] sm:text-[11px] md:text-[12px] tracking-[0.2em] text-white/50 mb-2 uppercase"
           >
             <span>30-HOUR INNOVATION HACKATHON</span>
-            <span>µLearn SBC × Build with AI</span>
-            <span>Sree Buddha College of Engineering</span>
           </motion.div>
 
           {/* Event Tagline */}
@@ -209,7 +202,7 @@ export default function Hero({ activeSection, onCtaClick, onRegisterClick }: Her
             animate="visible"
             className="font-sans text-[12px] sm:text-[15px] md:text-[17px] lg:text-[20px] short:text-[14px] xshort:text-[12px] font-light leading-relaxed text-white/82 mb-6 short:mb-5 max-w-xl"
           >
-            A 30-hour Innovation Hackathon powered by curiosity, AI and the spirit of building.
+            Brought to you by µLearn SBC and Build with AI.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -276,9 +269,12 @@ export default function Hero({ activeSection, onCtaClick, onRegisterClick }: Her
       </div>
 
       {/* Desktop absolute stats */}
-      <div className="hidden md:block absolute bottom-[30px] sm:bottom-[45px] lg:bottom-[50px] right-6 sm:right-10 lg:right-14 short:bottom-[40px] xshort:bottom-[30px] z-20">
+      <div className="hidden md:block absolute bottom-[30px] sm:bottom-[45px] lg:bottom-[50px] right-6 sm:right-10 lg:right-14 short:bottom-[40px] xshort:bottom-[30px] z-30">
         <Counter />
       </div>
-    </motion.div>
+
+      {/* Soft Faded Gradient Transition into About */}
+      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent via-[#060606]/65 to-[#060606] pointer-events-none z-20" />
+    </motion.section>
   );
 }
