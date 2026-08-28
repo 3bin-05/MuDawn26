@@ -125,7 +125,7 @@ export default function HackathonTimeline() {
                     backgroundColor: isActive ? 'rgba(13, 13, 13, 0.7)' : 'rgba(13, 13, 13, 0.3)',
                     boxShadow: isActive ? '0 10px 30px rgba(0, 0, 0, 0.5)' : '0 4px 20px rgba(0, 0, 0, 0.3)',
                   }}
-                  className="flex-1 min-w-0 w-full ml-8 sm:ml-16 border rounded-md p-5 sm:p-6 lg:p-7 flex flex-col gap-4 relative transition-all duration-300"
+                  className="flex-1 min-w-0 w-full ml-8 sm:ml-16 border rounded-none p-5 sm:p-6 lg:p-7 flex flex-col gap-4 relative transition-all duration-300"
                 >
                   {/* Card Header */}
                   <div className="flex flex-wrap items-center justify-between gap-4">

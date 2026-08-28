@@ -34,7 +34,7 @@ export default function BuildWithAI() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left: General Tech Statement */}
         <div className="lg:col-span-5 font-orbitron">
-          <div className="border border-white/10 p-5 rounded-sm bg-black/40 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+          <div className="border border-white/10 p-5 rounded-none bg-black/40 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
             <span className="block text-[10px] tracking-widest text-white/40 uppercase font-mono mb-2">SYSTEM_INTEGRATION //</span>
             <p className="font-sans font-light text-[13px] sm:text-[14px] text-white/70 leading-relaxed">
               Google's developer tools form the foundation of our hackathon experience. Work with recommended models and developer platforms to prototype products. Supported APIs and resources will be officially announced before kickoff.
@@ -56,7 +56,7 @@ export default function BuildWithAI() {
                 borderColor: 'rgba(255, 255, 255, 0.22)',
                 backgroundColor: 'rgba(255, 255, 255, 0.015)'
               }}
-              className="bg-[#0c0c0c]/40 border border-white/10 p-5 sm:p-6 rounded-md flex flex-col gap-2 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+              className="bg-[#0c0c0c]/40 border border-white/10 p-5 sm:p-6 rounded-none flex flex-col gap-2 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
             >
               <h4 className="font-orbitron font-bold text-[15px] sm:text-[16px] text-white tracking-wide uppercase">
                 {block.title}

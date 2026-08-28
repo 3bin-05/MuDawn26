@@ -129,10 +129,10 @@ export default function Footer({ onNavClick }: FooterProps) {
                 </span>
               </div>
               <div className="grid grid-cols-2 gap-3 max-w-xs">
-                <div className="border border-white/10 bg-white/[0.025] px-3 py-2 text-center rounded-sm">
+                <div className="border border-white/10 bg-white/[0.025] px-3 py-2 text-center rounded-none">
                   <span className="block text-white/35">9&deg;12&apos;41&quot;N</span>
                 </div>
-                <div className="border border-white/10 bg-white/[0.025] px-3 py-2 text-center rounded-sm">
+                <div className="border border-white/10 bg-white/[0.025] px-3 py-2 text-center rounded-none">
                   <span className="block text-white/35">76&deg;38&apos;29&quot;E</span>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function Footer({ onNavClick }: FooterProps) {
         <div className="w-full lg:w-auto flex flex-col gap-4 min-w-0">
           
           {/* Calendar Component */}
-          <div className="border border-white/10 bg-black/35 p-5 rounded-sm w-full lg:w-[600px] shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          <div className="border border-white/10 bg-black/35 p-5 rounded-none w-full lg:w-[600px] shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div className="flex items-start gap-2.5">
                 <Calendar className="w-5 h-5 text-white/70 mt-0.5" />
@@ -177,7 +177,7 @@ export default function Footer({ onNavClick }: FooterProps) {
                 href="https://www.google.com/calendar/render?action=TEMPLATE&text=%CE%BCDawn+%E2%80%9926+Hackathon&dates=20261002T033000Z/20261003T123000Z&details=30-Hour+Innovation+Hackathon+at+Sree+Buddha+College+of+Engineering&location=Sree+Buddha+College+of+Engineering,+Pattoor,+Kerala"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 border border-white/10 bg-white/[0.025] hover:bg-white hover:text-black font-orbitron text-[9px] tracking-[0.16em] uppercase rounded-sm px-3 py-2 transition-all duration-300 self-start sm:self-auto"
+                className="flex items-center gap-2 border border-white/10 bg-white/[0.025] hover:bg-white hover:text-black font-orbitron text-[9px] tracking-[0.16em] uppercase rounded-none px-3 py-2 transition-all duration-300 self-start sm:self-auto"
               >
                 <CalendarPlus className="w-3.5 h-3.5" />
                 ADD TO GOOGLE CALENDAR
@@ -265,7 +265,7 @@ export default function Footer({ onNavClick }: FooterProps) {
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   aria-label={label}
-                  className="group relative h-11 px-3 sm:px-4 rounded-sm border border-white/12 bg-white/[0.03] text-white/58 hover:text-black hover:border-white transition-all overflow-hidden flex items-center justify-center gap-1.5 sm:gap-2 font-orbitron text-[9px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.16em] uppercase flex-1 min-w-0"
+                  className="group relative h-11 px-3 sm:px-4 rounded-none border border-white/12 bg-white/[0.03] text-white/58 hover:text-black hover:border-white transition-all overflow-hidden flex items-center justify-center gap-1.5 sm:gap-2 font-orbitron text-[9px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.16em] uppercase flex-1 min-w-0"
                 >
                   <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
                   <Icon className="relative z-10 w-4 h-4 transition-colors duration-300" />
@@ -284,7 +284,7 @@ export default function Footer({ onNavClick }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={discord.label}
-                  className="group relative h-11 px-5 rounded-sm border border-white/12 bg-white/[0.03] text-white/58 hover:text-black hover:border-white transition-all overflow-hidden flex items-center justify-center gap-2 font-orbitron text-[10px] tracking-[0.16em] uppercase w-full"
+                  className="group relative h-11 px-5 rounded-none border border-white/12 bg-white/[0.03] text-white/58 hover:text-black hover:border-white transition-all overflow-hidden flex items-center justify-center gap-2 font-orbitron text-[10px] tracking-[0.16em] uppercase w-full"
                 >
                   <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
                   <DiscordIconComponent className="relative z-10 w-4 h-4 transition-colors duration-300" />

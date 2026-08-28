@@ -24,7 +24,7 @@ export default function CampusShowcase() {
 
       {/* Campus Image */}
       <div
-        className="group relative w-full aspect-[16/9] md:aspect-[21/9] border border-white/10 rounded-sm overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.6)]"
+        className="group relative w-full aspect-[16/9] md:aspect-[21/9] border border-white/10 rounded-none overflow-hidden shadow-[0_4px_40px_rgba(0,0,0,0.6)]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -47,13 +47,13 @@ export default function CampusShowcase() {
         </div>
 
         {/* Live badge top-right */}
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2 border border-white/15 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-sm pointer-events-none z-10">
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2 border border-white/15 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-none pointer-events-none z-10">
           <span className="h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
           <span className="font-mono text-[9px] sm:text-[10px] text-white/60 uppercase tracking-wider">CHAPTER_BASE // VENUE</span>
         </div>
 
         {/* Bottom info card */}
-        <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-black/65 backdrop-blur-md border border-white/15 px-4 py-3 max-w-xs sm:max-w-sm rounded-sm shadow-[0_8px_32px_rgba(0,0,0,0.5)] pointer-events-none z-10">
+        <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-black/65 backdrop-blur-md border border-white/15 px-4 py-3 max-w-xs sm:max-w-sm rounded-none shadow-[0_8px_32px_rgba(0,0,0,0.5)] pointer-events-none z-10">
           <h4 className="font-orbitron font-bold text-[13px] sm:text-[15px] text-white tracking-wide uppercase">
             Sree Buddha College of Engineering
           </h4>
@@ -91,26 +91,6 @@ export default function CampusShowcase() {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-
-      {/* Explore link CTA */}
-      <div className="flex justify-end mt-2">
-        <motion.a
-          href="https://mulearn-sbc.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative overflow-hidden inline-flex items-center py-[12px] px-[20px] sm:py-[14px] sm:px-[28px] border border-white/45 bg-transparent text-white hover:text-black font-sans text-[11px] sm:text-[13px] font-medium tracking-[0.08em] uppercase transition-colors duration-300"
-          whileHover={{ y: -2, borderColor: '#ffffff' }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
-        >
-          <span className="absolute inset-0 w-full h-full bg-white transition-transform duration-500 ease-[0.22,1,0.36,1] -translate-x-full group-hover:translate-x-0 z-0" />
-          <span className="relative z-10 flex items-center gap-2">
-            <span>Explore </span><span className="normal-case">μLEARN SBC</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:translate-x-1 text-current">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </motion.a>
       </div>
     </div>
   );

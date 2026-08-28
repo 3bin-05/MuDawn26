@@ -51,8 +51,8 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
       animate="visible"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-black/70 backdrop-blur-xl border-b border-white/8'
-          : 'bg-gradient-to-b from-black/60 to-transparent backdrop-blur-sm border-b border-white/5'
+          ? 'bg-black/60 backdrop-blur-xl'
+          : 'bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm'
       }`}
     >
       {/* Glass sheen line at very top */}
@@ -84,7 +84,7 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
                 <motion.button
                   key={item.value}
                   onClick={(e) => handleNavClick(e, item.value)}
-                  className="relative px-3 py-1.5 text-[11px] lg:text-[12px] font-orbitron font-medium tracking-[0.12em] uppercase transition-all duration-200 rounded-sm"
+                  className="relative px-3 py-1.5 text-[11px] lg:text-[12px] font-orbitron font-medium tracking-[0.12em] uppercase transition-all duration-200 rounded-none"
                   style={{ color: active ? '#ffffff' : 'rgba(255,255,255,0.45)' }}
                   whileHover={{ color: '#ffffff' }}
                 >
@@ -92,7 +92,7 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
                   {active && (
                     <motion.span
                       layoutId="navPill"
-                      className="absolute inset-0 rounded-sm bg-white/10 border border-white/15"
+                      className="absolute inset-0 rounded-none bg-white/10 border border-white/15"
                       transition={{ type: 'spring', stiffness: 400, damping: 35 }}
                     />
                   )}
@@ -115,7 +115,7 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
             onClick={onRegisterClick}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="relative overflow-hidden group px-4 py-2 text-[11px] font-orbitron font-semibold tracking-wider uppercase text-white border border-white/30 rounded-sm transition-all duration-300 hover:border-white/70"
+            className="relative overflow-hidden group px-4 py-2 text-[11px] font-orbitron font-semibold tracking-wider uppercase text-white border border-white/30 rounded-none transition-all duration-300 hover:border-white/70"
           >
             {/* Fill sweep on hover */}
             <span className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300 ease-[0.22,1,0.36,1]" />
@@ -189,7 +189,7 @@ export default function Navbar({ activeSection, setActiveSection, onRegisterClic
                 exit={{ opacity: 0, y: 16 }}
                 transition={{ delay: navItems.length * 0.07 }}
                 onClick={() => { onRegisterClick(); setIsMobileMenuOpen(false); }}
-                className="mt-6 px-8 py-3 border border-white/30 text-white text-[13px] font-orbitron font-semibold tracking-wider rounded-sm hover:bg-white hover:text-black transition-all duration-300 uppercase"
+                className="mt-6 px-8 py-3 border border-white/30 text-white text-[13px] font-orbitron font-semibold tracking-wider rounded-none hover:bg-white hover:text-black transition-all duration-300 uppercase"
               >
                 Register Now
               </motion.button>

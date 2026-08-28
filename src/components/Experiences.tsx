@@ -46,7 +46,7 @@ export default function Experiences() {
               backgroundColor: 'rgba(255, 255, 255, 0.025)',
               transition: { duration: 0.2 }
             }}
-            className="bg-[#0c0c0c]/40 border border-white/10 rounded-md p-5 sm:p-6 lg:p-7 flex flex-col gap-3 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+            className="bg-[#0c0c0c]/40 border border-white/10 rounded-none p-5 sm:p-6 lg:p-7 flex flex-col gap-3 relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
           >
             {/* Index label indicator */}
             <span className="font-mono text-[10px] text-white/30 tracking-widest uppercase">

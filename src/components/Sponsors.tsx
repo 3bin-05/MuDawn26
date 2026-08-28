@@ -58,7 +58,7 @@ export default function Sponsors() {
               borderColor: 'rgba(255, 255, 255, 0.2)',
               backgroundColor: 'rgba(255, 255, 255, 0.015)'
             }}
-            className={`border border-white/8 border-dashed rounded-md p-5 flex flex-col justify-between bg-black/20 ${tier.sizeClass} relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.2)]`}
+            className={`border border-white/8 border-dashed rounded-none p-5 flex flex-col justify-between bg-black/20 ${tier.sizeClass} relative transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.2)]`}
           >
             {/* Top info */}
             <div className="flex justify-between items-start font-mono text-[9px] text-white/35 tracking-wider uppercase">
@@ -85,7 +85,7 @@ export default function Sponsors() {
       </div>
 
       {/* Note about sponsor package */}
-      <div className="max-w-2xl border border-white/5 bg-[#0d0d0d]/40 rounded-sm p-5 font-mono text-[10px] sm:text-[11px] text-white/50 flex flex-col gap-1.5 shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
+      <div className="max-w-2xl border border-white/5 bg-[#0d0d0d]/40 rounded-none p-5 font-mono text-[10px] sm:text-[11px] text-white/50 flex flex-col gap-1.5 shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
         <span className="text-white/60 font-bold">SPONSORSHIP_INQUIRIES</span>
         <p className="font-sans font-light text-[12px] text-white/40 leading-relaxed mt-1">
           Partner with μDawn ’26 to support student builders. Opportunities include cloud credit provisioning, technical mentorship packages, dedicated API tracks, merchandise goodies, and prize sponsorships. Reach out to our campus enablers to explore partner tiers.

@@ -29,7 +29,7 @@ export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: Fin
         {/* Register for μDawn '26 */}
         <motion.button
           onClick={onRegisterClick}
-          className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[40px] bg-white text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-bold tracking-[0.08em] uppercase transition-colors duration-300 rounded-sm"
+          className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[40px] bg-white text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-bold tracking-[0.08em] uppercase transition-colors duration-300 rounded-none"
           whileHover={{
             y: -2,
             boxShadow: '0 0 25px rgba(255, 255, 255, 0.25)',
@@ -45,7 +45,7 @@ export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: Fin
         {/* Explore the Journey */}
         <motion.button
           onClick={onExploreJourneyClick}
-          className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[40px] border border-white/30 bg-transparent text-white hover:text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-medium tracking-[0.08em] uppercase transition-colors duration-300 rounded-sm"
+          className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[40px] border border-white/30 bg-transparent text-white hover:text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-medium tracking-[0.08em] uppercase transition-colors duration-300 rounded-none"
           whileHover={{
             y: -2,
             borderColor: '#ffffff',
