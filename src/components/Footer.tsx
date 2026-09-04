@@ -1,5 +1,5 @@
 import type { SVGProps } from 'react';
-import { Mail, Calendar, CalendarPlus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Mail, Phone, MessageSquare, ArrowUpRight, User } from 'lucide-react';
 import logoImg from '../assets/SBC-logo.svg';
 import googleMapsLogo from '../assets/Google_Maps .webp';
 
@@ -159,97 +159,107 @@ export default function Footer({ onNavClick }: FooterProps) {
         {/* Right Column - Calendar and Contact Links */}
         <div className="w-full lg:w-auto flex flex-col gap-4 min-w-0">
           
-          {/* Calendar Component */}
-          <div className="border border-white/10 bg-black/35 p-5 rounded-none w-full lg:w-[600px] shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div className="flex items-start gap-2.5">
-                <Calendar className="w-5 h-5 text-white/70 mt-0.5" />
-                <div>
-                  <span className="block font-orbitron text-[10px] tracking-[0.22em] uppercase text-white/60">
-                    MARK YOUR CALENDARS
-                  </span>
-                  <span className="block font-sans text-[11px] text-white/45 mt-0.5">
-                    Don't miss the big days!
-                  </span>
-                </div>
+          {/* Contact Us / Coordinators Component */}
+          <div className="border border-white/10 bg-black/35 p-6 sm:p-7 rounded-none w-full lg:w-[600px] shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex flex-col gap-6">
+            {/* Header */}
+            <div className="flex flex-col gap-1 border-b border-white/10 pb-4">
+              <div className="flex items-center justify-between">
+                <span className="font-orbitron text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-white/50 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-white/70 rounded-none animate-pulse" />
+                  DIRECT ASSISTANCE
+                </span>
+                <span className="font-mono text-[9px] text-white/40 tracking-wider uppercase">
+                  COORDINATION // DESK
+                </span>
               </div>
-              <a
-                href="https://www.google.com/calendar/render?action=TEMPLATE&text=%CE%BCDawn+%E2%80%9926+Hackathon&dates=20261002T033000Z/20261003T123000Z&details=30-Hour+Innovation+Hackathon+at+Sree+Buddha+College+of+Engineering&location=Sree+Buddha+College+of+Engineering,+Pattoor,+Kerala"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 border border-white/10 bg-white/[0.025] hover:bg-white hover:text-black font-orbitron text-[9px] tracking-[0.16em] uppercase rounded-none px-3 py-2 transition-all duration-300 self-start sm:self-auto"
-              >
-                <CalendarPlus className="w-3.5 h-3.5" />
-                ADD TO GOOGLE CALENDAR
-              </a>
+              <h3 className="font-orbitron font-bold text-[18px] sm:text-[22px] tracking-wide text-white mt-1">
+                Contact Us
+              </h3>
+              <p className="font-sans font-light text-[12px] sm:text-[13px] text-white/60 leading-relaxed">
+                Have queries regarding registration, event flow, problem statements or logistics? Reach out to our lead organizers.
+              </p>
             </div>
 
-            {/* Calendar Grid */}
-            <div className="pt-4">
-              {/* Month Selector */}
-              <div className="flex items-center justify-between text-white/80 font-orbitron text-[11px] tracking-[0.18em] uppercase mb-4 px-2">
-                <ChevronLeft className="w-4 h-4 text-white/20 hover:text-white cursor-pointer transition-colors" />
-                <span>OCTOBER 2026</span>
-                <ChevronRight className="w-4 h-4 text-white/20 hover:text-white cursor-pointer transition-colors" />
+            {/* Coordinators Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Coordinator 1: Aadit Ajay */}
+              <div className="border border-white/12 bg-white/[0.025] hover:border-white/30 p-4 sm:p-5 flex flex-col justify-between gap-4 transition-all duration-300 rounded-none group">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-orbitron text-[9px] tracking-[0.2em] text-white/40 uppercase">
+                      COORDINATOR 01
+                    </span>
+                    <User className="w-3.5 h-3.5 text-white/40 group-hover:text-white transition-colors" />
+                  </div>
+                  <h4 className="font-orbitron font-bold text-[15px] sm:text-[16px] text-white tracking-wide mt-1">
+                    Aadit Ajay
+                  </h4>
+                  <span className="font-sans text-[11px] text-white/50">
+                    Lead Coordinator
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-2 pt-3 border-t border-white/10">
+                  <a
+                    href="tel:+919562321151"
+                    className="flex items-center justify-between font-mono text-[12px] sm:text-[13px] text-white/90 hover:text-white group/btn transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Phone className="w-3.5 h-3.5 text-white/60" />
+                      +91 95623 21151
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white/30 group-hover/btn:text-white transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </a>
+                  <a
+                    href="https://wa.me/919562321151"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 py-2 px-3 border border-white/15 bg-white/[0.04] hover:bg-white hover:text-black font-orbitron text-[10px] tracking-wider uppercase text-white transition-all duration-300 rounded-none mt-1"
+                  >
+                    <MessageSquare className="w-3 h-3" />
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
               </div>
 
-              {/* Days of Week */}
-              <div className="grid grid-cols-7 text-center font-orbitron text-[9px] tracking-[0.16em] text-white/35 mb-2">
-                <span>SUN</span>
-                <span>MON</span>
-                <span>TUE</span>
-                <span>WED</span>
-                <span>THU</span>
-                <span>FRI</span>
-                <span>SAT</span>
-              </div>
+              {/* Coordinator 2: Ebin Reji */}
+              <div className="border border-white/12 bg-white/[0.025] hover:border-white/30 p-4 sm:p-5 flex flex-col justify-between gap-4 transition-all duration-300 rounded-none group">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-orbitron text-[9px] tracking-[0.2em] text-white/40 uppercase">
+                      COORDINATOR 02
+                    </span>
+                    <User className="w-3.5 h-3.5 text-white/40 group-hover:text-white transition-colors" />
+                  </div>
+                  <h4 className="font-orbitron font-bold text-[15px] sm:text-[16px] text-white tracking-wide mt-1">
+                    Ebin Reji
+                  </h4>
+                  <span className="font-sans text-[11px] text-white/50">
+                    Lead Coordinator
+                  </span>
+                </div>
 
-              {/* Calendar Days */}
-              <div className="grid grid-cols-7 text-center font-mono text-[11px] text-white/80 gap-y-3 items-center justify-items-center">
-                {/* Row 1 (Sept 27 - Oct 3) */}
-                <span className="text-white/20 py-1">27</span>
-                <span className="text-white/20 py-1">28</span>
-                <span className="text-white/20 py-1">29</span>
-                <span className="text-white/20 py-1">30</span>
-                <span className="text-white/80 py-1">1</span>
-                <span className="flex items-center justify-center w-7 h-7 rounded-full border border-white text-white font-bold">2</span>
-                <span className="flex items-center justify-center w-7 h-7 rounded-full border border-white text-white font-bold">3</span>
-
-                {/* Row 2 (Oct 4 - 10) */}
-                <span className="py-1 text-white/80">4</span>
-                <span className="py-1 text-white/80">5</span>
-                <span className="py-1 text-white/80">6</span>
-                <span className="py-1 text-white/80">7</span>
-                <span className="py-1 text-white/80">8</span>
-                <span className="py-1 text-white/80">9</span>
-                <span className="py-1 text-white/80">10</span>
-
-                {/* Row 3 (Oct 11 - 17) */}
-                <span className="py-1 text-white/80">11</span>
-                <span className="py-1 text-white/80">12</span>
-                <span className="py-1 text-white/80">13</span>
-                <span className="py-1 text-white/80">14</span>
-                <span className="py-1 text-white/80">15</span>
-                <span className="py-1 text-white/80">16</span>
-                <span className="py-1 text-white/80">17</span>
-
-                {/* Row 4 (Oct 18 - 24) */}
-                <span className="py-1 text-white/80">18</span>
-                <span className="py-1 text-white/80">19</span>
-                <span className="py-1 text-white/80">20</span>
-                <span className="py-1 text-white/80">21</span>
-                <span className="py-1 text-white/80">22</span>
-                <span className="py-1 text-white/80">23</span>
-                <span className="py-1 text-white/80">24</span>
-
-                {/* Row 5 (Oct 25 - 31) */}
-                <span className="py-1 text-white/80">25</span>
-                <span className="py-1 text-white/80">26</span>
-                <span className="py-1 text-white/80">27</span>
-                <span className="py-1 text-white/80">28</span>
-                <span className="py-1 text-white/80">29</span>
-                <span className="py-1 text-white/80">30</span>
-                <span className="py-1 text-white/80">31</span>
+                <div className="flex flex-col gap-2 pt-3 border-t border-white/10">
+                  <a
+                    href="tel:+919526325296"
+                    className="flex items-center justify-between font-mono text-[12px] sm:text-[13px] text-white/90 hover:text-white group/btn transition-colors"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Phone className="w-3.5 h-3.5 text-white/60" />
+                      +91 95263 25296
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white/30 group-hover/btn:text-white transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </a>
+                  <a
+                    href="https://wa.me/919526325296"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 py-2 px-3 border border-white/15 bg-white/[0.04] hover:bg-white hover:text-black font-orbitron text-[10px] tracking-wider uppercase text-white transition-all duration-300 rounded-none mt-1"
+                  >
+                    <MessageSquare className="w-3 h-3" />
+                    <span>WhatsApp</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

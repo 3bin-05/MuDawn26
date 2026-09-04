@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { timelinePhases } from '../config/eventConfig';
-import { CheckCircle2, Circle } from 'lucide-react';
+import { CheckCircle2, Circle, Download } from 'lucide-react';
 
 export default function HackathonTimeline() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -168,6 +168,18 @@ export default function HackathonTimeline() {
               </div>
             );
           })}
+        </div>
+
+        {/* Download Whole Brochure Box Button */}
+        <div className="mt-14 sm:mt-20 flex flex-col items-center justify-center">
+          <a
+            href="/brochure.pdf"
+            download="muDawn26_Brochure.pdf"
+            className="group relative inline-flex items-center justify-center gap-3.5 px-8 sm:px-12 py-4 sm:py-5 border border-white bg-black/40 backdrop-blur-sm text-white font-orbitron font-bold text-[12px] sm:text-[14px] tracking-[0.2em] uppercase rounded-none hover:bg-white hover:text-black transition-all duration-300 shadow-[0_4px_25px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)] select-none cursor-pointer"
+          >
+            <Download className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:-translate-y-1" />
+            <span>DOWNLOAD THE WHOLE BROCHURE</span>
+          </a>
         </div>
       </div>
     </div>
