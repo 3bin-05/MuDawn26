@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import bgImg from '../assets/mubg.webp';
 import Counter from './Counter';
+import RegisterButton from './RegisterButton';
 
 interface HeroProps {
-  onCtaClick: () => void;
+  onContactClick: () => void;
   onRegisterClick: () => void;
 }
 
-export default function Hero({ onCtaClick, onRegisterClick }: HeroProps) {
+export default function Hero({ onContactClick, onRegisterClick }: HeroProps) {
   // Parallax background variables
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -212,22 +213,12 @@ export default function Hero({ onCtaClick, onRegisterClick }: HeroProps) {
             animate="visible"
             className="flex flex-wrap gap-4 items-center self-start"
           >
-            {/* Primary Action Button */}
-            <motion.button
-              onClick={onRegisterClick}
-              className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[44px] bg-white text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-bold tracking-[0.08em] uppercase transition-colors duration-300"
-              whileHover={{
-                y: -2,
-                boxShadow: '0 0 25px rgba(255, 255, 255, 0.25)',
-              }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-            >
-              <span className="relative z-10">Register Now</span>
-            </motion.button>
+            {/* Primary Action Button with MakeMyPass hover transition */}
+            <RegisterButton onClick={onRegisterClick} text="Register Now" />
 
             {/* Secondary Action Button */}
             <motion.button
-              onClick={onCtaClick}
+              onClick={onContactClick}
               className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[44px] border border-white/30 bg-transparent text-white hover:text-black font-sans text-[13px] sm:text-[15px] lg:text-[16px] font-semibold tracking-[0.08em] uppercase transition-colors duration-300"
               whileHover={{
                 y: -2,
@@ -240,8 +231,7 @@ export default function Hero({ onCtaClick, onRegisterClick }: HeroProps) {
               
               {/* Content layer */}
               <span className="relative z-10 flex items-center gap-2">
-                <span>Explore</span>
-                <span className="normal-case">μDAWN</span>
+                <span>Contact Us</span>
                 <svg
                   width="16"
                   height="16"

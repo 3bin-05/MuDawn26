@@ -64,6 +64,10 @@ export default function App() {
     }
   };
 
+  const handleContactClick = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   const handleRegisterClick = () => {
     if (eventInfo.registrationUrl) {
       window.open(eventInfo.registrationUrl, '_blank', 'noopener,noreferrer');
@@ -109,7 +113,7 @@ export default function App() {
       {/* z-[2] + solid bg — sits above the fixed space bg while visible */}
       <div className="relative z-[2] bg-[#060606]">
         <Hero
-          onCtaClick={() => handleNavSelection('about')}
+          onContactClick={handleContactClick}
           onRegisterClick={handleRegisterClick}
         />
         <AboutAndCampus />

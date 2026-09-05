@@ -30,8 +30,9 @@ export default function HackathonJourney({
     }))
   );
 
-  const handleExploreJourney = () => {
-    document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' });
+  const handleContactClick = () => {
+    const el = document.getElementById('contact') || document.getElementById('footer');
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -85,7 +86,7 @@ export default function HackathonJourney({
         <BuildWithAI />
         <WhyMuDawn />
         <Sponsors />
-        <FinalCTA onRegisterClick={onRegisterClick} onExploreJourneyClick={handleExploreJourney} />
+        <FinalCTA onRegisterClick={onRegisterClick} onContactClick={handleContactClick} />
       </div>
 
       {/* Bottom fade into Footer */}

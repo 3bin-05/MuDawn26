@@ -11,7 +11,7 @@ export default function CampusShowcase() {
     <div id="showcase" className="w-full min-h-[calc(100vh-5rem)] flex flex-col justify-center gap-4 sm:gap-5 py-4 sm:py-5 scroll-mt-20">
       {/* Top Header block */}
       <div className="flex flex-col gap-1">
-        <span className="font-orbitron font-semibold text-[10px] sm:text-[11px] tracking-[0.3em] text-[#3b82f6] uppercase">
+        <span className="font-orbitron font-semibold text-[10px] sm:text-[11px] tracking-[0.3em] text-[#4062BF] uppercase">
           EVENT VENUE
         </span>
         <h2 className="font-orbitron font-extrabold text-[26px] sm:text-[34px] md:text-[40px] tracking-tight leading-none text-white">

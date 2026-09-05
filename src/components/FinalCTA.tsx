@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
+import RegisterButton from './RegisterButton';
 
 interface FinalCTAProps {
   onRegisterClick: () => void;
-  onExploreJourneyClick: () => void;
+  onContactClick: () => void;
 }
 
-export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: FinalCTAProps) {
+export default function FinalCTA({ onRegisterClick, onContactClick }: FinalCTAProps) {
   return (
     <div id="final-cta" className="w-full min-h-[75vh] flex flex-col gap-8 sm:gap-10 pt-24 pb-12 border-t border-white/5 items-center justify-center text-center max-w-4xl mx-auto">
       {/* Small top node label */}
@@ -26,25 +27,12 @@ export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: Fin
 
       {/* Action buttons */}
       <div className="flex flex-wrap gap-4 items-center justify-center mt-4">
-        {/* Register for μDawn '26 */}
-        <motion.button
-          onClick={onRegisterClick}
-          className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[40px] bg-white text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-bold tracking-[0.08em] uppercase transition-colors duration-300 rounded-none"
-          whileHover={{
-            y: -2,
-            boxShadow: '0 0 25px rgba(255, 255, 255, 0.25)',
-          }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
-        >
-          <span className="relative z-10 flex items-center gap-2">
-            <span>Register for</span>
-            <span className="normal-case">μDAWN '26</span>
-          </span>
-        </motion.button>
+        {/* Register for μDawn '26 with MakeMyPass hover animation */}
+        <RegisterButton onClick={onRegisterClick} text="Register for μDawn '26" />
 
-        {/* Explore the Journey */}
+        {/* Contact Us */}
         <motion.button
-          onClick={onExploreJourneyClick}
+          onClick={onContactClick}
           className="group relative overflow-hidden inline-flex items-center py-[14px] px-[28px] sm:py-[18px] sm:px-[36px] lg:py-[20px] lg:px-[40px] border border-white/30 bg-transparent text-white hover:text-black font-sans text-[12px] sm:text-[14px] lg:text-[15px] font-medium tracking-[0.08em] uppercase transition-colors duration-300 rounded-none"
           whileHover={{
             y: -2,
@@ -57,7 +45,7 @@ export default function FinalCTA({ onRegisterClick, onExploreJourneyClick }: Fin
           
           {/* Content layer */}
           <span className="relative z-10 flex items-center gap-2">
-            <span>Explore the Journey</span>
+            <span>Contact Us</span>
             <svg
               width="14"
               height="14"
